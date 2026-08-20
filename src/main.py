@@ -21,7 +21,8 @@ def main():
         categoria="Comida",
         descripcion="Hamburguesa",
         monto=15000,
-        cuenta=mercado_pago
+        cuenta_origen=mercado_pago,
+        cuenta_destino=None
     )
     
     if gasto_hamburguesa.procesar():
@@ -38,7 +39,8 @@ def main():
         categoria="INGRESO",
         descripcion="COBROQUINCENA",
         monto=200000,
-        cuenta=mercado_pago
+        cuenta_origen=None,
+        cuenta_destino=mercado_pago
     )
     
     if cobro_quincena.procesar():
