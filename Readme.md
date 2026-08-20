@@ -137,67 +137,69 @@ Las tecnologías y herramientas podrán evolucionar a medida que avance el proye
 El proyecto se divide en fases incrementales para asegurar un desarrollo ordenado y medible:
 
 ### 🔹 Sprint 0 — Configuración inicial
-✅ Crear repositorio local.
-✅ Inicializar Git.
-✅ Configurar la rama principal main.
-✅ Crear estructura inicial del proyecto.
-✅ Crear .gitignore.
-✅ Crear README inicial.
-✅ Crear repositorio remoto en GitHub.
-✅ Realizar el primer commit.
-✅ Subir el proyecto a GitHub.
+- ✅ Crear repositorio local.
+- ✅ Inicializar Git.
+- ✅ Configurar la rama principal main.
+- ✅ Crear estructura inicial del proyecto.
+- ✅ Crear .gitignore.
+- ✅ Crear README inicial.
+- ✅ Crear repositorio remoto en GitHub.
+- ✅ Realizar el primer commit.
+- ✅ Subir el proyecto a GitHub.
 
 ### 🔹 Sprint 1 — Núcleo financiero en Python
-[ ] Modelar cuentas.
-[ ] Gestionar saldos.
-[ ] Registrar ingresos.
-[ ] Registrar gastos.
-[ ] Validar saldo disponible.
-[ ] Implementar transferencias entre cuentas.
-[ ] Implementar compra de dólares.
-[ ] Implementar venta de dólares.
+- ✅ Definir monedas disponibles.
+- ✅ Definir propósitos de cuenta.
+- ✅ Modelar cuentas.
+- ✅ Gestionar saldos.
+- [ ] Registrar ingresos.
+- [ ] Registrar gastos.
+- [ ] Validar saldo disponible.
+- [ ] Implementar transferencias entre cuentas.
+- [ ] Implementar compra de dólares.
+- [ ] Implementar venta de dólares.
 
 ### 🔹 Sprint 2 — Base de datos
-[ ] Diseñar el modelo de datos.
-[ ] Crear la base de datos SQLite.
-[ ] Crear tablas.
-[ ] Conectar Python con SQLite.
-[ ] Persistir cuentas.
-[ ] Persistir operaciones.
+- [ ] Diseñar el modelo de datos.
+- [ ] Crear la base de datos SQLite.
+- [ ] Crear tablas.
+- [ ] Conectar Python con SQLite.
+- [ ] Persistir cuentas.
+- [ ] Persistir operaciones.
 
 ### 🔹 Sprint 3 — Gestión de categorías
-[ ] Crear categorías.
-[ ] Editar categorías.
-[ ] Eliminar o desactivar categorías.
-[ ] Asociar categorías a operaciones.
+- [ ] Crear categorías.
+- [ ] Editar categorías.
+- [ ] Eliminar o desactivar categorías.
+- [ ] Asociar categorías a operaciones.
 
 ### 🔹 Sprint 4 — Historial y consultas
-[ ] Visualizar operaciones.
-[ ] Filtrar por período.
-[ ] Filtrar por categoría.
-[ ] Filtrar por tipo.
-[ ] Consultar saldos.
+- [ ] Visualizar operaciones.
+- [ ] Filtrar por período.
+- [ ] Filtrar por categoría.
+- [ ] Filtrar por tipo.
+- [ ] Consultar saldos.
 
 ### 🔹 Sprint 5 — Aplicación web
-[ ] Incorporar Flask.
-[ ] Crear rutas.
-[ ] Crear templates.
-[ ] Integrar la lógica financiera con la aplicación web.
+- [ ] Incorporar Flask.
+- [ ] Crear rutas.
+- [ ] Crear templates.
+- [ ] Integrar la lógica financiera con la aplicación web.
 
 ### 🔹 Sprint 6 — Interfaz
-[ ] Crear dashboard general.
-[ ] Registrar operaciones desde formularios.
-[ ] Gestionar cuentas.
-[ ] Gestionar categorías.
-[ ] Crear historial visual.
+- [ ] Crear dashboard general.
+- [ ] Registrar operaciones desde formularios.
+- [ ] Gestionar cuentas.
+- [ ] Gestionar categorías.
+- [ ] Crear historial visual.
 
 ### 🔹 Sprint 7 — Estadísticas
-[ ] Dashboard mensual.
-[ ] Selector de período.
-[ ] Gastos por categoría.
-[ ] Estadísticas mensuales.
-[ ] Estadísticas anuales.
-[ ] Gráficos.
+- [ ] Dashboard mensual.
+- [ ] Selector de período.
+- [ ] Gastos por categoría.
+- [ ] Estadísticas mensuales.
+- [ ] Estadísticas anuales.
+- [ ] Gráficos.
 
 ---
 
