@@ -220,7 +220,18 @@ chore: tareas de mantenimiento, configuración o estructura del proyecto.
 
 🚧 En desarrollo
 
-Actualmente se encuentra en la etapa de configuración inicial y planificación de la arquitectura.
+Actualmente el proyecto se encuentra en desarrollo del núcleo financiero en Python.
+
+Se han implementado las primeras entidades del dominio:
+
+- Monedas.
+- Propósitos de cuenta.
+- Cuentas.
+- Gestión y validación de saldos.
+- Operaciones de ingreso.
+- Operaciones de gasto.
+
+El siguiente objetivo es mejorar el modelo de operaciones para soportar movimientos entre cuentas y posteriormente implementar transferencias y conversiones entre pesos y dólares.
 
 ---
 
