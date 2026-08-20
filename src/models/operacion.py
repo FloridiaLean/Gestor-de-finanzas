@@ -14,9 +14,16 @@ class Operacion:
     def procesar(self):
         
         if self.tipo == TipoOperacion.INGRESO:
-            return self.cuenta.acreditar(self.monto)
+            return self.cuenta_destino.acreditar(self.monto)
         
         if self.tipo == TipoOperacion.GASTO:
             return self.cuenta_origen.debitar(self.monto)
         
+        if self.tipo == TipoOperacion.TRANSFERENCIA:
+            
+            transferencia_realizada = self.cuenta_origen.debitar(self.monto)
+            
+            if transferencia_realizada:
+                return self.cuenta_destino.acreditar(self.monto)
+            
         return False

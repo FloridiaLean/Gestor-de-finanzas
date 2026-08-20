@@ -155,7 +155,7 @@ El proyecto se divide en fases incrementales para asegurar un desarrollo ordenad
 - ✅ Registrar ingresos.
 - ✅ Registrar gastos.
 - ✅ Validar saldo disponible.
-- [ ] Implementar transferencias entre cuentas.
+- ✅ Implementar transferencias entre cuentas.
 - [ ] Implementar compra de dólares.
 - [ ] Implementar venta de dólares.
 
