@@ -1,7 +1,8 @@
 from models.cuenta import Cuenta
 from models.moneda import Moneda
 from models.proposito_cuenta import PropositoCuenta
-
+from models.tipo_operacion import TipoOperacion
+from models.operacion import Operacion
 
 def main():
     
@@ -9,23 +10,43 @@ def main():
         nombre="Mercado Pago",
         moneda=Moneda.ARS,
         proposito=PropositoCuenta.DISPONIBLE,
-        saldo=180000
+        saldo=200000
     )
     
     print(f"Saldo inicial: {mercado_pago.saldo}")
     
-    mercado_pago.acreditar(50000)
+    gasto_hamburguesa = Operacion(
+        fecha="13/08/2026",
+        tipo=TipoOperacion.GASTO,
+        categoria="Comida",
+        descripcion="Hamburguesa",
+        monto=15000,
+        cuenta=mercado_pago
+    )
     
-    print(f"Saldo después del ingreso: {mercado_pago.saldo}")
-    
-    if mercado_pago.debitar(300000):
-        print("Débito realizado correctamente")
+    if gasto_hamburguesa.procesar():
+        print("Operación procesada correctamente")
     else:
-        print("Saldo insuficiente")
-
+        print("No se pudo procesar la operación")
+    
+    print(f"Saldo 1ra operación: {mercado_pago.saldo}")
+    
+    
+    cobro_quincena = Operacion(
+        fecha="13/08/2026",
+        tipo=TipoOperacion.INGRESO,
+        categoria="INGRESO",
+        descripcion="COBROQUINCENA",
+        monto=200000,
+        cuenta=mercado_pago
+    )
+    
+    if cobro_quincena.procesar():
+            print("2da operación procesada correctamente")
+    else:
+        print("No se pudo procesar la operación")
+        
     print(f"Saldo final: {mercado_pago.saldo}")
-
-
 
 if __name__ == "__main__":
     main()

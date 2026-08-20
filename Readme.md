@@ -152,9 +152,9 @@ El proyecto se divide en fases incrementales para asegurar un desarrollo ordenad
 - ✅ Definir propósitos de cuenta.
 - ✅ Modelar cuentas.
 - ✅ Gestionar saldos.
-- [ ] Registrar ingresos.
-- [ ] Registrar gastos.
-- [ ] Validar saldo disponible.
+- ✅ Registrar ingresos.
+- ✅ Registrar gastos.
+- ✅ Validar saldo disponible.
 - [ ] Implementar transferencias entre cuentas.
 - [ ] Implementar compra de dólares.
 - [ ] Implementar venta de dólares.
@@ -221,7 +221,6 @@ chore: tareas de mantenimiento, configuración o estructura del proyecto.
 🚧 En desarrollo
 
 Actualmente se encuentra en la etapa de configuración inicial y planificación de la arquitectura.
-
 
 ---
 
