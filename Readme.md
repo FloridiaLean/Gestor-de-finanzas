@@ -156,8 +156,8 @@ El proyecto se divide en fases incrementales para asegurar un desarrollo ordenad
 - ✅ Registrar gastos.
 - ✅ Validar saldo disponible.
 - ✅ Implementar transferencias entre cuentas.
-- [ ] Implementar compra de dólares.
-- [ ] Implementar venta de dólares.
+- ✅ Implementar compra de dólares.
+- ✅ Implementar venta de dólares.
 
 ### 🔹 Sprint 2 — Base de datos
 - [ ] Diseñar el modelo de datos.

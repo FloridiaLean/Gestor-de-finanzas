@@ -12,71 +12,63 @@ def main():
         proposito=PropositoCuenta.DISPONIBLE,
         saldo=200000
     )
-    
     efectivo = Cuenta(
     nombre="Efectivo",
     moneda=Moneda.ARS,
     proposito=PropositoCuenta.DISPONIBLE,
     saldo=50000
     )
-    
-    print(f"Saldo inicial: {mercado_pago.saldo}")
-    
-    gasto_hamburguesa = Operacion(
-        fecha="13/08/2026",
-        tipo=TipoOperacion.GASTO,
-        categoria="Comida",
-        descripcion="Hamburguesa",
-        monto=15000,
-        cuenta_origen=mercado_pago,
-        cuenta_destino=None
+    cuenta_ahorro = Cuenta(
+        nombre="Binance",
+        moneda=Moneda.USD,
+        proposito=PropositoCuenta.AHORRO,
+        saldo=1000
     )
     
-    if gasto_hamburguesa.procesar():
-        print("Operación procesada correctamente")
-    else:
-        print("No se pudo procesar la operación")
-    
-    print(f"Saldo despues de 1ra operación: {mercado_pago.saldo}")
-    
-    
-    cobro_quincena = Operacion(
-        fecha="13/08/2026",
-        tipo=TipoOperacion.INGRESO,
-        categoria="INGRESO",
-        descripcion="COBROQUINCENA",
-        monto=200000,
-        cuenta_origen=None,
-        cuenta_destino=mercado_pago
-    )
-    
-    if cobro_quincena.procesar():
-            print("2da operación procesada correctamente")
-    else:
-        print("No se pudo procesar la operación")
-        
-    print(f"Saldo despues de 2da operación: {mercado_pago.saldo}")
-    
-    print(f"Mercado Pago saldo: {mercado_pago.saldo}")
-    print(f"Efectivo antes: {efectivo.saldo}")
-    
-    transferencia_efectivo = Operacion(
+    compra_dolares = Operacion(
     fecha="13/08/2026",
-    tipo=TipoOperacion.TRANSFERENCIA,
+    tipo=TipoOperacion.COMPRA_DOLARES,
     categoria=None,
-    descripcion="Retiro de efectivo",
-    monto=30000,
+    descripcion="Compra de dólares",
+    monto=100,
     cuenta_origen=mercado_pago,
-    cuenta_destino=efectivo
+    cuenta_destino=cuenta_ahorro,
+    precio_conversion=1500
     )
     
-    if transferencia_efectivo.procesar():
-        print("Transferencia realizada correctamente")
-    else:
-        print("No se pudo realizar la transferencia")
+    print(f"Mercado Pago antes: ${mercado_pago.saldo}")
+    print(f"Ahorro antes: USD {cuenta_ahorro.saldo}")
     
-    print(f"Mercado Pago después: {mercado_pago.saldo}")
-    print(f"Efectivo después: {efectivo.saldo}")
+    if compra_dolares.procesar():
+        print("Compra de dólares realizada correctamente")
+    else:
+        print("No se pudo realizar la compra")
+    
+    print(f"Mercado Pago después: ${mercado_pago.saldo}")
+    print(f"Ahorro después: USD {cuenta_ahorro.saldo}") 
+    print("")
+    
+    venta_dolares = Operacion(
+    fecha="13/08/2026",
+    tipo=TipoOperacion.VENTA_DOLARES,
+    categoria=None,
+    descripcion="Venta de dólares",
+    monto=100,
+    cuenta_origen=cuenta_ahorro,
+    cuenta_destino=mercado_pago,
+    precio_conversion=1500
+    )
+    
+    print(f"Mercado Pago antes: ${mercado_pago.saldo}")
+    print(f"Ahorro antes: USD {cuenta_ahorro.saldo}")
+    
+    if venta_dolares.procesar():
+        print("Venta de dólares realizada correctamente")
+    else:
+        print("No se pudo realizar la venta")
+    
+    print(f"Mercado Pago después: ${mercado_pago.saldo}")
+    print(f"Ahorro después: USD {cuenta_ahorro.saldo}")
     
 if __name__ == "__main__":
     main()
