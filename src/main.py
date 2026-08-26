@@ -4,6 +4,7 @@ from models.operacion import Operacion
 from models.proposito_cuenta import PropositoCuenta
 from models.tipo_operacion import TipoOperacion
 from models.tipo_conversion import TipoConversion
+from models.categoria import Categoria
 
 def main():
     
@@ -20,39 +21,10 @@ def main():
         saldo=1000
     )
     
-    compra_dolares = Operacion(
-    fecha="13/08/2026",
-    tipo=TipoOperacion.CONVERSION,
-    categoria=None,
-    descripcion="Compra de dolares",
-    monto=100,
-    cuenta_origen=mercado_pago,
-    cuenta_destino=cuenta_ahorro,
-    precio_conversion=1500,
-    subtipo_conversion=TipoConversion.COMPRA
-    )
+    categoria = Categoria("Comida")
     
-    if compra_dolares.procesar():
-        print("Compra de dolares realizada correctamente")
-    else:
-        print("No se pudo realizar la compra")
-    
-    venta_dolares = Operacion(
-    fecha="13/08/2026",
-    tipo=TipoOperacion.CONVERSION,
-    categoria=None,
-    descripcion="Venta de dolares",
-    monto=100,
-    cuenta_origen=cuenta_ahorro,
-    cuenta_destino=mercado_pago,
-    precio_conversion=1500,
-    subtipo_conversion=TipoConversion.VENTA
-    )
-    
-    if venta_dolares.procesar():
-        print("Venta de dolares realizada correctamente")
-    else:
-        print("No se pudo realizar la venta")
+    print(categoria.nombre)
+    print(categoria.activa)
 
 if __name__ == "__main__":
     main()

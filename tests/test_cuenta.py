@@ -2,7 +2,6 @@ from models.cuenta import Cuenta
 from models.moneda import Moneda
 from models.proposito_cuenta import PropositoCuenta
 
-
 def test_acreditar_monto_positivo():
 
     cuenta = Cuenta(

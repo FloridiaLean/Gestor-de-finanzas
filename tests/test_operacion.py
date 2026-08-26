@@ -5,7 +5,6 @@ from models.operacion import Operacion
 from models.tipo_operacion import TipoOperacion
 from models.tipo_conversion import TipoConversion
 
-
 def test_ingreso():
 
     mercado_pago = Cuenta(

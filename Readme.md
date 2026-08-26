@@ -100,6 +100,7 @@ Finalmente, se desarrollará una interfaz web utilizando Flask, HTML y CSS.
 
 La evolución prevista será:
 
+```
 Lógica en Python
        ↓
 Base de datos SQLite + SQL
@@ -111,6 +112,7 @@ Aplicación Flask
 Interfaz web
        ↓
 Dashboard y estadísticas
+```
 
 ---
 
@@ -207,12 +209,12 @@ El proyecto se divide en fases incrementales para asegurar un desarrollo ordenad
 
 El proyecto utilizará los siguientes tipos de commits:
 
-feat: nueva funcionalidad o mejora visible.
-fix: corrección de un error.
-refactor: reorganización del código sin modificar su comportamiento.
-docs: documentación.
-test: incorporación o modificación de pruebas.
-chore: tareas de mantenimiento, configuración o estructura del proyecto.
+- feat: nueva funcionalidad o mejora visible.
+- fix: corrección de un error.
+- refactor: reorganización del código sin modificar su comportamiento.
+- docs: documentación.
+- test: incorporación o modificación de pruebas.
+- chore: tareas de mantenimiento, configuración o estructura del proyecto.
 
 ---
 
