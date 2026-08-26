@@ -1,7 +1,7 @@
 from models.tipo_operacion import TipoOperacion
 from models.tipo_conversion import TipoConversion
 from models.moneda import Moneda
-from models.cuenta import PropositoCuenta
+from models.proposito_cuenta import PropositoCuenta
 
 class Operacion:
     

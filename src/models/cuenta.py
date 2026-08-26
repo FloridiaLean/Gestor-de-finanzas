@@ -32,6 +32,6 @@ class Cuenta:
         return (
             f"Cuenta: {self.nombre}\n"
             f"Moneda: {self.moneda.value}\n"
-            f"Propósito: {self.proposito.value}\n"
+            f"Proposito: {self.proposito.value}\n"
             f"Saldo: {self.saldo}"
         )

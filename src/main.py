@@ -1,8 +1,8 @@
 from models.cuenta import Cuenta
 from models.moneda import Moneda
+from models.operacion import Operacion
 from models.proposito_cuenta import PropositoCuenta
 from models.tipo_operacion import TipoOperacion
-from models.operacion import Operacion
 from models.tipo_conversion import TipoConversion
 
 def main():
@@ -12,12 +12,6 @@ def main():
         moneda=Moneda.ARS,
         proposito=PropositoCuenta.DISPONIBLE,
         saldo=200000
-    )
-    efectivo = Cuenta(
-    nombre="Efectivo",
-    moneda=Moneda.ARS,
-    proposito=PropositoCuenta.DISPONIBLE,
-    saldo=50000
     )
     cuenta_ahorro = Cuenta(
         nombre="Binance",
@@ -30,7 +24,7 @@ def main():
     fecha="13/08/2026",
     tipo=TipoOperacion.CONVERSION,
     categoria=None,
-    descripcion="Compra de dólares",
+    descripcion="Compra de dolares",
     monto=100,
     cuenta_origen=mercado_pago,
     cuenta_destino=cuenta_ahorro,
@@ -39,7 +33,7 @@ def main():
     )
     
     if compra_dolares.procesar():
-        print("Compra de dólares realizada correctamente")
+        print("Compra de dolares realizada correctamente")
     else:
         print("No se pudo realizar la compra")
     
@@ -47,7 +41,7 @@ def main():
     fecha="13/08/2026",
     tipo=TipoOperacion.CONVERSION,
     categoria=None,
-    descripcion="Venta de dólares",
+    descripcion="Venta de dolares",
     monto=100,
     cuenta_origen=cuenta_ahorro,
     cuenta_destino=mercado_pago,
@@ -56,7 +50,7 @@ def main():
     )
     
     if venta_dolares.procesar():
-        print("Venta de dólares realizada correctamente")
+        print("Venta de dolares realizada correctamente")
     else:
         print("No se pudo realizar la venta")
 
