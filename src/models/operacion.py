@@ -1,6 +1,7 @@
 from models.tipo_operacion import TipoOperacion
 from models.tipo_conversion import TipoConversion
 from models.moneda import Moneda
+from models.categoria import Categoria
 from models.proposito_cuenta import PropositoCuenta
 
 class Operacion:
@@ -16,7 +17,18 @@ class Operacion:
         self.precio_conversion = precio_conversion
         self.subtipo_conversion = subtipo_conversion
     
+    def validar_categoria(self):
+        
+        if self.categoria is None:
+            return False
+        
+        if not self.categoria.activa:
+            return False
+        
+        return True
+
     def calcular_monto_ars(self):
+        
         return self.monto * self.precio_conversion
     
     def validar_monedas_conversion(self):
@@ -27,7 +39,7 @@ class Operacion:
             if self.subtipo_conversion == TipoConversion.VENTA:
                 return (self.cuenta_origen.moneda == Moneda.USD and self.cuenta_destino.moneda == Moneda.ARS)
             return False
-    
+
     def validar_proposito_conversion(self):
     
         if self.subtipo_conversion == TipoConversion.COMPRA:
@@ -37,7 +49,7 @@ class Operacion:
             return (self.cuenta_origen.proposito == PropositoCuenta.AHORRO and self.cuenta_destino.proposito == PropositoCuenta.DISPONIBLE)
         
         return False
-    
+
     def validar_conversion(self):
         
         if self.monto <= 0:
@@ -62,13 +74,21 @@ class Operacion:
                     return False
         
         return True
-    
+
     def procesar(self):
         
         if self.tipo == TipoOperacion.INGRESO:
+            
+            if not self.validar_categoria():
+                return False
+            
             return self.cuenta_destino.acreditar(self.monto)
         
         if self.tipo == TipoOperacion.GASTO:
+            
+            if not self.validar_categoria():
+                return False
+            
             return self.cuenta_origen.debitar(self.monto)
         
         if self.tipo == TipoOperacion.TRANSFERENCIA:

@@ -170,10 +170,11 @@ El proyecto se divide en fases incrementales para asegurar un desarrollo ordenad
 - [ ] Persistir operaciones.
 
 ### 🔹 Sprint 3 — Gestión de categorías
-- [ ] Crear categorías.
-- [ ] Editar categorías.
-- [ ] Eliminar o desactivar categorías.
-- [ ] Asociar categorías a operaciones.
+- ✅ Crear categorías.
+- ✅ Editar categorías.
+- ✅ Desactivar categorías.
+- [ ] Eliminar categorías.
+- ✅ Asociar categorías a operaciones.
 
 ### 🔹 Sprint 4 — Historial y consultas
 - [ ] Visualizar operaciones.

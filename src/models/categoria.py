@@ -8,3 +8,9 @@ class Categoria:
         
         self.nombre = nombre
         self.activa = True
+    
+    def activar(self):
+        self.activa = True
+    
+    def desactivar(self):
+        self.activa = False
