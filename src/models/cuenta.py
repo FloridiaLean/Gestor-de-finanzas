@@ -1,9 +1,13 @@
 from models.moneda import Moneda
 from models.proposito_cuenta import PropositoCuenta
+from utils.validaciones import validar_nombre
 
 class Cuenta:
     
     def __init__(self,nombre,moneda,proposito,saldo):
+        
+        validar_nombre(nombre)
+        
         self.nombre = nombre
         self.moneda = moneda
         self.proposito = proposito
