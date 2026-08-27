@@ -11,14 +11,37 @@ from database.schema import (
     crear_tabla_categorias,
     crear_tabla_operaciones
 )
+from database.cuentas import (
+    guardar_cuenta,
+    obtener_cuenta,
+    actualizar_cuenta
+)
 
 def main():
     
-    crear_tabla_cuentas()
-    crear_tabla_categorias()
-    crear_tabla_operaciones()
+    cuenta = obtener_cuenta(2)
     
-    print("Tablas creadas correctamente")
+    print("ANTES:")
+    print(cuenta)
+    
+    cuenta_actualizada = Cuenta(
+        nombre="Efectivo fisico",
+        moneda=Moneda.ARS,
+        proposito=PropositoCuenta.DISPONIBLE,
+        saldo=75000
+    )
+    
+    resultado = actualizar_cuenta(2, cuenta_actualizada)
+    
+    if resultado:
+        print("\nCuenta actualizada correctamente")
+    else:
+        print("\nNo se encontro la cuenta")
+    
+    cuenta = obtener_cuenta(2)
+    
+    print("\nDESPUES:")
+    print(cuenta)
 
 if __name__ == "__main__":
     main()

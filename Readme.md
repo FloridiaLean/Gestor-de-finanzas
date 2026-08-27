@@ -162,11 +162,11 @@ El proyecto se divide en fases incrementales para asegurar un desarrollo ordenad
 - ✅ Implementar venta de dólares.
 
 ### 🔹 Sprint 2 — Base de datos
-- [ ] Diseñar el modelo de datos.
-- [ ] Crear la base de datos SQLite.
-- [ ] Crear tablas.
-- [ ] Conectar Python con SQLite.
-- [ ] Persistir cuentas.
+- ✅ Diseñar el modelo de datos.
+- ✅ Crear la base de datos SQLite.
+- ✅ Crear tablas.
+- ✅ Conectar Python con SQLite.
+- ✅ Persistir cuentas.
 - [ ] Persistir operaciones.
 
 ### 🔹 Sprint 3 — Gestión de categorías

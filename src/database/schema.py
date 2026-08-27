@@ -1,8 +1,12 @@
 from database.database import obtener_conexion
 
-def crear_tabla_cuentas():
+def crear_tabla_cuentas(conexion=None):
     
-    conexion = obtener_conexion()
+    conexion_propia = False
+    
+    if conexion is None:
+        conexion = obtener_conexion()
+        conexion_propia = True
     
     conexion.execute("""
         CREATE TABLE IF NOT EXISTS cuentas (
@@ -15,11 +19,17 @@ def crear_tabla_cuentas():
     """)
     
     conexion.commit()
-    conexion.close()
-
-def crear_tabla_categorias():
     
-    conexion = obtener_conexion()
+    if conexion_propia:
+        conexion.close()
+
+def crear_tabla_categorias(conexion=None):
+    
+    conexion_propia = False
+    
+    if conexion is None:
+        conexion = obtener_conexion()
+        conexion_propia = True
     
     conexion.execute("""
         CREATE TABLE IF NOT EXISTS categorias (
@@ -30,11 +40,17 @@ def crear_tabla_categorias():
     """)
     
     conexion.commit()
-    conexion.close()
-
-def crear_tabla_operaciones():
     
-    conexion = obtener_conexion()
+    if conexion_propia:
+        conexion.close()
+
+def crear_tabla_operaciones(conexion=None):
+    
+    conexion_propia = False
+    
+    if conexion is None:
+        conexion = obtener_conexion()
+        conexion_propia = True
     
     conexion.execute("""
         CREATE TABLE IF NOT EXISTS operaciones (
@@ -56,4 +72,6 @@ def crear_tabla_operaciones():
     """)
     
     conexion.commit()
-    conexion.close()
+    
+    if conexion_propia:
+        conexion.close()
