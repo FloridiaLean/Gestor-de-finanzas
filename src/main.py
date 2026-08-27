@@ -5,26 +5,20 @@ from models.proposito_cuenta import PropositoCuenta
 from models.tipo_operacion import TipoOperacion
 from models.tipo_conversion import TipoConversion
 from models.categoria import Categoria
+from database.database import obtener_conexion
+from database.schema import (
+    crear_tabla_cuentas,
+    crear_tabla_categorias,
+    crear_tabla_operaciones
+)
 
 def main():
     
-    mercado_pago = Cuenta(
-        nombre="Mercado Pago",
-        moneda=Moneda.ARS,
-        proposito=PropositoCuenta.DISPONIBLE,
-        saldo=200000
-    )
-    cuenta_ahorro = Cuenta(
-        nombre="Binance",
-        moneda=Moneda.USD,
-        proposito=PropositoCuenta.AHORRO,
-        saldo=1000
-    )
+    crear_tabla_cuentas()
+    crear_tabla_categorias()
+    crear_tabla_operaciones()
     
-    categoria = Categoria("Comida")
-    
-    print(categoria.nombre)
-    print(categoria.activa)
+    print("Tablas creadas correctamente")
 
 if __name__ == "__main__":
     main()
