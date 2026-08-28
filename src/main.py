@@ -16,32 +16,33 @@ from database.cuentas import (
     obtener_cuenta,
     actualizar_cuenta
 )
+from database.categorias import (
+    guardar_categoria,
+    obtener_categoria,
+    actualizar_categoria
+)
 
 def main():
     
-    cuenta = obtener_cuenta(2)
+    categoria = obtener_categoria(9)
     
-    print("ANTES:")
-    print(cuenta)
-    
-    cuenta_actualizada = Cuenta(
-        nombre="Efectivo fisico",
-        moneda=Moneda.ARS,
-        proposito=PropositoCuenta.DISPONIBLE,
-        saldo=75000
-    )
-    
-    resultado = actualizar_cuenta(2, cuenta_actualizada)
-    
-    if resultado:
-        print("\nCuenta actualizada correctamente")
+    if categoria is not None:
+        
+        print("Estado antes:", categoria.activa)
+        
+        categoria.desactivar()
+        
+        resultado = actualizar_categoria(9,categoria)
+        
+        if resultado:
+            print("Categoria actualizada correctamente")
+            
+            categoria = obtener_categoria(9)
+            
+            print("Estado despues:", categoria.activa)
+        
     else:
-        print("\nNo se encontro la cuenta")
-    
-    cuenta = obtener_cuenta(2)
-    
-    print("\nDESPUES:")
-    print(cuenta)
+        print("Categoria no encontrada")
 
 if __name__ == "__main__":
     main()
