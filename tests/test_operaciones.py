@@ -9,6 +9,7 @@ from database.categorias import guardar_categoria
 from database.operaciones import (
     guardar_operacion,
     obtener_operacion,
+    obtener_operaciones,
     actualizar_operacion
 )
 from models.cuenta import Cuenta
@@ -149,6 +150,66 @@ def test_obtener_operacion_inexistente():
     operacion_obtenida = obtener_operacion(999,conexion)
     
     assert operacion_obtenida is None
+    
+    conexion.close()
+
+def test_obtener_operaciones():
+    
+    conexion = obtener_conexion(":memory:")
+    
+    crear_tabla_cuentas(conexion)
+    crear_tabla_categorias(conexion)
+    crear_tabla_operaciones(conexion)
+    
+    categoria = Categoria(
+        nombre="Comida"
+    )
+    
+    guardar_categoria(categoria,conexion)
+    
+    cuenta = Cuenta(
+        nombre="Mercado Pago",
+        moneda=Moneda.ARS,
+        proposito=PropositoCuenta.DISPONIBLE,
+        saldo=300000
+    )
+    
+    guardar_cuenta(cuenta,conexion)
+    
+    operacion_1 = Operacion(
+        fecha="30/08/2026",
+        tipo=TipoOperacion.GASTO,
+        categoria=categoria,
+        descripcion="Hamburguesa con los chicos",
+        monto=17000,
+        cuenta_origen=cuenta,
+        cuenta_destino=None
+    )
+    operacion_2 = Operacion(
+        fecha="30/08/2026",
+        tipo=TipoOperacion.GASTO,
+        categoria=categoria,
+        descripcion="Supermercado",
+        monto=200000,
+        cuenta_origen=cuenta,
+        cuenta_destino=None
+    )
+    
+    guardar_operacion(operacion_1,conexion)
+    guardar_operacion(operacion_2,conexion)
+    
+    operaciones = obtener_operaciones(conexion)
+    
+    assert isinstance(operaciones, list)
+    assert len(operaciones) == 2
+    assert operaciones[0].id == operacion_1.id
+    assert operaciones[0].descripcion == "Hamburguesa con los chicos"
+    assert operaciones[0].monto == 17000
+    assert operaciones[1].id == operacion_2.id
+    assert operaciones[1].descripcion == "Supermercado"
+    assert operaciones[1].monto == 200000
+    assert operaciones[0].categoria.nombre == "Comida"
+    assert operaciones[0].cuenta_origen.nombre == "Mercado Pago"
     
     conexion.close()
 

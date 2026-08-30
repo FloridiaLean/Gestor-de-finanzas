@@ -110,6 +110,33 @@ def obtener_operacion(id_operacion,conexion=None):
     
     return operacion
 
+def obtener_operaciones(conexion=None):
+    
+    conexion_propia = False
+    
+    if conexion is None:
+        conexion = obtener_conexion()
+        conexion_propia = True
+    
+    resultados = conexion.execute("""
+        SELECT id
+        FROM operaciones
+        ORDER BY id
+    """).fetchall()
+    
+    operaciones = []
+    
+    for resultado in resultados:
+        operacion = obtener_operacion(resultado[0],conexion)
+        
+        if operacion is not None:
+            operaciones.append(operacion)
+    
+    if conexion_propia:
+        conexion.close()
+    
+    return operaciones
+
 def actualizar_operacion(id_operacion,operacion,conexion=None):
     
     conexion_propia = False

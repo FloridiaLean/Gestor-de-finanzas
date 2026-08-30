@@ -24,49 +24,50 @@ from database.categorias import (
 from database.operaciones import (
     guardar_operacion,
     obtener_operacion,
-    actualizar_operacion
+    actualizar_operacion,
+    obtener_operaciones
 )
 
 def main():
     
     conexion = obtener_conexion()
     
-    operacion = obtener_operacion(2,conexion)
-    
-    if operacion is not None:
-    
-        print("Operación original:")
-        print("ID:", operacion.id)
-        print("Descripción:", operacion.descripcion)
-        print("Monto:", operacion.monto)
-        print("Categoría:", operacion.categoria.nombre)
-    
-    categoria = obtener_categoria(1, conexion)
-    cuenta = obtener_cuenta(1, conexion)
+    categoria = obtener_categoria(1,conexion)
+    cuenta = obtener_cuenta(1,conexion)
     
     operacion_actualizada = Operacion(
-        fecha=operacion.fecha,
-        tipo=TipoOperacion.GASTO,
-        categoria=categoria,
-        descripcion="Cena",
-        monto=18000,
-        cuenta_origen=cuenta,
-        cuenta_destino=None
+        fecha = "30/8/2026",
+        tipo = TipoOperacion.GASTO,
+        categoria = categoria,
+        descripcion = "Pollo con papas",
+        monto = 12000,
+        cuenta_origen = cuenta,
+        cuenta_destino = None
     )
     
-    resultado = actualizar_operacion(operacion.id,operacion_actualizada,conexion)
+    resultado = actualizar_operacion(4,operacion_actualizada,conexion)
     
-    print("\nResultado de actualización:", resultado)
+    operaciones = obtener_operaciones(conexion)
     
-    operacion_obtenida = obtener_operacion(operacion.id,conexion)
+    print(f"Cantidad de operaciones: {len(operaciones)}")
     
-    print("\nOperación actualizada:")
-    print("ID:", operacion_obtenida.id)
-    print("Descripción:", operacion_obtenida.descripcion)
-    print("Monto:", operacion_obtenida.monto)
-    print("Categoría:", operacion_obtenida.categoria.nombre)
-    print("Cuenta origen:", operacion_obtenida.cuenta_origen.nombre)
-    
+    for operacion in operaciones:
+        print("--------------------")
+        print("ID:", operacion.id)
+        print("Fecha:", operacion.fecha)
+        print("Tipo:", operacion.tipo.value)
+        print("Descripcion:", operacion.descripcion)
+        print("Monto:", operacion.monto)
+        
+        if operacion.categoria is not None:
+            print("Categoria:", operacion.categoria.nombre)
+        
+        if operacion.cuenta_origen is not None:
+            print("Cuenta origen:", operacion.cuenta_origen.nombre)
+        
+        if operacion.cuenta_destino is not None:
+            print("Cuenta destino:", operacion.cuenta_destino.nombre)
+        
     conexion.close()
 
 if __name__ == "__main__":
