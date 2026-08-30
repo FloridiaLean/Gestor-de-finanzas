@@ -18,16 +18,19 @@ def test_guardar_categoria():
     )
     
     guardar_categoria(categoria,conexion)
-    
+
     resultado = conexion.execute("""
-        SELECT nombre, activa
+        SELECT id,nombre,activa
         FROM categorias
         WHERE nombre = ?
     """, ("Comida",)).fetchone()
     
+    assert categoria.id is not None
+    assert isinstance(categoria.id,int)
     assert resultado is not None
-    assert resultado[0] == "Comida"
-    assert resultado[1] == 1
+    assert resultado[0] == categoria.id
+    assert resultado[1] == "Comida"
+    assert resultado[2] == 1
     
     conexion.close()
 
@@ -45,6 +48,7 @@ def test_obtener_categoria():
     
     categoria_obtenida = obtener_categoria(1,conexion)
     
+    assert categoria_obtenida.id == 1
     assert categoria_obtenida is not None
     assert categoria_obtenida.nombre == "Comida"
     assert categoria_obtenida.activa is True
@@ -87,6 +91,7 @@ def test_actualizar_categoria():
     
     categoria_obtenida = obtener_categoria(1,conexion)
     
+    assert categoria_obtenida.id == 1
     assert categoria_obtenida.nombre == "Restaurantes"
     assert categoria_obtenida.activa is False
     

@@ -2,10 +2,11 @@ from utils.validaciones import validar_nombre
 
 class Categoria:
     
-    def __init__(self,nombre):
+    def __init__(self,nombre,id=None):
         
         validar_nombre(nombre)
         
+        self.id = id
         self.nombre = nombre
         self.activa = True
     

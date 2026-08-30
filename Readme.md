@@ -168,7 +168,7 @@ El proyecto se divide en fases incrementales para asegurar un desarrollo ordenad
 - ✅ Conectar Python con SQLite.
 - ✅ Persistir cuentas.
 - ✅ Persistir categorías
-- [ ] Persistir operaciones.
+- ✅ Persistir operaciones.
 
 ### 🔹 Sprint 3 — Gestión de categorías
 - ✅ Crear categorías.

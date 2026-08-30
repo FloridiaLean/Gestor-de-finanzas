@@ -21,28 +21,53 @@ from database.categorias import (
     obtener_categoria,
     actualizar_categoria
 )
+from database.operaciones import (
+    guardar_operacion,
+    obtener_operacion,
+    actualizar_operacion
+)
 
 def main():
     
-    categoria = obtener_categoria(9)
+    conexion = obtener_conexion()
     
-    if categoria is not None:
-        
-        print("Estado antes:", categoria.activa)
-        
-        categoria.desactivar()
-        
-        resultado = actualizar_categoria(9,categoria)
-        
-        if resultado:
-            print("Categoria actualizada correctamente")
-            
-            categoria = obtener_categoria(9)
-            
-            print("Estado despues:", categoria.activa)
-        
-    else:
-        print("Categoria no encontrada")
+    operacion = obtener_operacion(2,conexion)
+    
+    if operacion is not None:
+    
+        print("Operación original:")
+        print("ID:", operacion.id)
+        print("Descripción:", operacion.descripcion)
+        print("Monto:", operacion.monto)
+        print("Categoría:", operacion.categoria.nombre)
+    
+    categoria = obtener_categoria(1, conexion)
+    cuenta = obtener_cuenta(1, conexion)
+    
+    operacion_actualizada = Operacion(
+        fecha=operacion.fecha,
+        tipo=TipoOperacion.GASTO,
+        categoria=categoria,
+        descripcion="Cena",
+        monto=18000,
+        cuenta_origen=cuenta,
+        cuenta_destino=None
+    )
+    
+    resultado = actualizar_operacion(operacion.id,operacion_actualizada,conexion)
+    
+    print("\nResultado de actualización:", resultado)
+    
+    operacion_obtenida = obtener_operacion(operacion.id,conexion)
+    
+    print("\nOperación actualizada:")
+    print("ID:", operacion_obtenida.id)
+    print("Descripción:", operacion_obtenida.descripcion)
+    print("Monto:", operacion_obtenida.monto)
+    print("Categoría:", operacion_obtenida.categoria.nombre)
+    print("Cuenta origen:", operacion_obtenida.cuenta_origen.nombre)
+    
+    conexion.close()
 
 if __name__ == "__main__":
     main()

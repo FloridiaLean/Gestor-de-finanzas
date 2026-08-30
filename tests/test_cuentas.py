@@ -23,21 +23,22 @@ def test_guardar_cuenta():
         saldo=200000
     ) 
     
-    guardar_cuenta(cuenta)
-    
-    conexion = obtener_conexion()
+    guardar_cuenta(cuenta,conexion)
     
     resultado = conexion.execute("""
-        SELECT nombre,moneda,proposito,saldo
+        SELECT id,nombre,moneda,proposito,saldo
         FROM cuentas
-        WHERE nombre = ?
-    """, ("Mercado Pago",)).fetchone()
+        WHERE id = ?
+    """, (cuenta.id,)).fetchone()
     
+    assert cuenta.id is not None
+    assert isinstance(cuenta.id,int)
     assert resultado is not None
-    assert resultado[0] == "Mercado Pago"
-    assert resultado[1] == "ARS"
-    assert resultado[2] == "DISPONIBLE"
-    assert resultado[3] == 200000
+    assert resultado[0] == cuenta.id
+    assert resultado[1] == "Mercado Pago"
+    assert resultado[2] == "ARS"
+    assert resultado[3] == "DISPONIBLE"
+    assert resultado[4] == 200000
     
     conexion.close()
 
@@ -59,6 +60,7 @@ def test_obtener_cuenta_existente():
     cuenta_obtenida = obtener_cuenta(1,conexion)
     
     assert cuenta_obtenida is not None
+    assert cuenta_obtenida.id == 1
     assert cuenta_obtenida.nombre == "Mercado Pago"
     assert cuenta_obtenida.moneda == Moneda.ARS
     assert cuenta_obtenida.proposito == PropositoCuenta.DISPONIBLE
@@ -106,6 +108,8 @@ def test_actualizar_cuenta():
     
     cuenta_obtenida = obtener_cuenta(1,conexion)
     
+    assert cuenta_obtenida is not None
+    assert cuenta_obtenida.id == 1
     assert cuenta_obtenida.nombre == "Mercado Pago Personal"
     assert cuenta_obtenida.moneda == Moneda.ARS
     assert cuenta_obtenida.proposito == PropositoCuenta.DISPONIBLE

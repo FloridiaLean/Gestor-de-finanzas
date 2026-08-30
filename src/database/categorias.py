@@ -9,8 +9,11 @@ def guardar_categoria(categoria,conexion=None):
         conexion = obtener_conexion()
         conexion_propia = True
     
-    conexion.execute("""
-        INSERT INTO categorias (nombre,activa)
+    cursor = conexion.execute("""
+        INSERT INTO categorias (
+            nombre,
+            activa
+        )
         VALUES (?,?)
     """, (
         categoria.nombre,
@@ -18,6 +21,8 @@ def guardar_categoria(categoria,conexion=None):
     ))
     
     conexion.commit()
+    
+    categoria.id = cursor.lastrowid
     
     if conexion_propia:
         conexion.close()
@@ -31,7 +36,7 @@ def obtener_categoria(id_categoria,conexion=None):
         conexion_propia = True
     
     resultado = conexion.execute("""
-        SELECT nombre,activa
+        SELECT id,nombre,activa
         FROM categorias
         WHERE id = ?
     """, (id_categoria,)).fetchone()
@@ -43,10 +48,11 @@ def obtener_categoria(id_categoria,conexion=None):
         return None
     
     categoria = Categoria(
-        nombre=resultado[0]
+        id=resultado[0],
+        nombre=resultado[1]
     )
     
-    categoria.activa=bool(resultado[1])
+    categoria.activa=bool(resultado[2])
     
     return categoria
 

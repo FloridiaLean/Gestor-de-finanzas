@@ -4,10 +4,11 @@ from utils.validaciones import validar_nombre
 
 class Cuenta:
     
-    def __init__(self,nombre,moneda,proposito,saldo):
+    def __init__(self,nombre,moneda,proposito,saldo,id=None):
         
         validar_nombre(nombre)
         
+        self.id = id
         self.nombre = nombre
         self.moneda = moneda
         self.proposito = proposito
