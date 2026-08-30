@@ -224,18 +224,32 @@ El proyecto utilizará los siguientes tipos de commits:
 
 🚧 En desarrollo
 
-Actualmente el proyecto se encuentra en desarrollo del núcleo financiero en Python.
+Actualmente el proyecto se encuentra en desarrollo del núcleo financiero en Python y una primera capa de persistencia utilizando SQLite.
 
-Se han implementado las primeras entidades del dominio:
+Se han implementado:
 
-- Monedas.
-- Propósitos de cuenta.
-- Cuentas.
+- Monedas y propósitos de cuenta.
+- Modelo de cuentas.
 - Gestión y validación de saldos.
+- Modelo de categorías.
+- Activación y desactivación de categorías.
+- Modelo de operaciones.
 - Operaciones de ingreso.
 - Operaciones de gasto.
+- Transferencias entre cuentas.
+- Compra y venta de dólares.
+- Validaciones asociadas a conversiones.
+- Persistencia de cuentas.
+- Persistencia de categorías.
+- Persistencia de operaciones.
+- Identificadores (`id`) en las entidades persistidas.
+- Recuperación de entidades desde SQLite.
+- Actualización de cuentas, categorías y operaciones.
+- Pruebas automatizadas con pytest.
 
-El siguiente objetivo es mejorar el modelo de operaciones para soportar movimientos entre cuentas y posteriormente implementar transferencias y conversiones entre pesos y dólares.
+La arquitectura continúa separando el modelo de dominio de la capa de persistencia, utilizando SQLite como primera implementación de almacenamiento.
+
+El próximo objetivo es completar las funcionalidades pendientes de gestión y consulta de operaciones antes de avanzar hacia la aplicación web con Flask.
 
 ---
 
