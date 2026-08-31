@@ -18,7 +18,7 @@ def test_ingreso():
     categoria_ingreso = Categoria("Ingreso")
     
     ingreso = Operacion(
-        fecha="13/08/2026",
+        fecha="2026/08/13",
         tipo=TipoOperacion.INGRESO,
         categoria=categoria_ingreso,
         descripcion="Cobro quincena",
@@ -45,7 +45,7 @@ def test_ingreso_categoria_inactiva():
     categoria_ingreso.desactivar()
     
     ingreso = Operacion(
-        fecha="13/08/2026",
+        fecha="2026/08/13",
         tipo=TipoOperacion.INGRESO,
         categoria=categoria_ingreso,
         descripcion="Cobro quincena",
@@ -69,7 +69,7 @@ def test_ingreso_sin_categoria():
     )
     
     ingreso = Operacion(
-        fecha="13/08/2026",
+        fecha="2026/08/13",
         tipo=TipoOperacion.INGRESO,
         categoria=None,
         descripcion="Cobro quincena",
@@ -95,7 +95,7 @@ def test_gasto():
     categoria_comida = Categoria("Comida")
     
     gasto = Operacion(
-        fecha="13/08/2026",
+        fecha="2026/08/13",
         tipo=TipoOperacion.GASTO,
         categoria=categoria_comida,
         descripcion="Hamburguesas",
@@ -121,7 +121,7 @@ def test_gasto_saldo_insuficiente():
     categoria_comida = Categoria("Comida")
     
     gasto = Operacion(
-        fecha="13/08/2026",
+        fecha="2026/08/13",
         tipo=TipoOperacion.GASTO,
         categoria=categoria_comida,
         descripcion="Hamburguesas",
@@ -148,7 +148,7 @@ def test_gasto_categoria_inactiva():
     categoria_comida.desactivar()
     
     gasto = Operacion(
-        fecha="13/08/2026",
+        fecha="2026/08/13",
         tipo=TipoOperacion.GASTO,
         categoria=categoria_comida,
         descripcion="Hamburguesas",
@@ -172,7 +172,7 @@ def test_gasto_sin_categoria():
     )
     
     gasto = Operacion(
-        fecha="13/08/2026",
+        fecha="2026/08/13",
         tipo=TipoOperacion.GASTO,
         categoria=None,
         descripcion="Hamburguesas",
@@ -204,7 +204,7 @@ def test_transferencia():
     categoria_transferencia = Categoria("Transferencia")
     
     transferencia = Operacion(
-        fecha="13/08/2026",
+        fecha="2026/08/13",
         tipo=TipoOperacion.TRANSFERENCIA,
         categoria=categoria_transferencia,
         descripcion="transferencia a efectivo",
@@ -237,7 +237,7 @@ def test_transferencia_saldo_insuficiente():
     categoria_transferencia = Categoria("Transferencia")
     
     transferencia = Operacion(
-            fecha="13/08/2026",
+            fecha="2026/08/13",
             tipo=TipoOperacion.TRANSFERENCIA,
             categoria=categoria_transferencia,
             descripcion="transferencia a efectivo",
@@ -270,7 +270,7 @@ def test_compra_dolares():
     categoria_conversion = Categoria("Conversion")
     
     conversion = Operacion(
-            fecha="13/08/2026",
+            fecha="2026/08/13",
             tipo=TipoOperacion.CONVERSION,
             categoria=categoria_conversion,
             descripcion="compra de dolares",
@@ -305,7 +305,7 @@ def test_compra_dolares_saldo_insuficiente():
     categoria_conversion = Categoria("Conversion")
     
     conversion = Operacion(
-            fecha="13/08/2026",
+            fecha="2026/08/13",
             tipo=TipoOperacion.CONVERSION,
             categoria=categoria_conversion,
             descripcion="compra de dolares",
@@ -340,7 +340,7 @@ def test_venta_dolares():
     categoria_conversion = Categoria("Conversion")
     
     conversion = Operacion(
-            fecha="13/08/2026",
+            fecha="2026/08/13",
             tipo=TipoOperacion.CONVERSION,
             categoria=categoria_conversion,
             descripcion="venta de dolares",
@@ -375,7 +375,7 @@ def test_venta_dolares_saldo_insuficiente():
     categoria_conversion = Categoria("Conversion")
     
     conversion = Operacion(
-            fecha="13/08/2026",
+            fecha="2026/08/13",
             tipo=TipoOperacion.CONVERSION,
             categoria=categoria_conversion,
             descripcion="venta de dolares",
@@ -410,7 +410,7 @@ def test_compra_dolares_monedas_invalidas():
     categoria_conversion = Categoria("Conversion")
     
     conversion = Operacion(
-            fecha="13/08/2026",
+            fecha="2026/08/13",
             tipo=TipoOperacion.CONVERSION,
             categoria=categoria_conversion,
             descripcion="compra de dolares",
@@ -445,7 +445,7 @@ def test_venta_dolares_monedas_invalidas():
     categoria_conversion = Categoria("Conversion")
     
     conversion = Operacion(
-            fecha="13/08/2026",
+            fecha="2026/08/13",
             tipo=TipoOperacion.CONVERSION,
             categoria=categoria_conversion,
             descripcion="venta de dolares",
@@ -480,7 +480,7 @@ def test_conversion_proposito_invalido():
     categoria_conversion = Categoria("Conversion")
     
     conversion = Operacion(
-            fecha="13/08/2026",
+            fecha="2026/08/13",
             tipo=TipoOperacion.CONVERSION,
             categoria=categoria_conversion,
             descripcion="venta de dolares",

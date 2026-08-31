@@ -25,49 +25,22 @@ from database.operaciones import (
     guardar_operacion,
     obtener_operacion,
     actualizar_operacion,
-    obtener_operaciones
+    obtener_operaciones,
+    obtener_operaciones_por_periodo,
+    obtener_operaciones_por_categoria,
+    obtener_operaciones_por_tipo,
+    obtener_operaciones_por_cuenta
 )
 
 def main():
     
     conexion = obtener_conexion()
     
-    categoria = obtener_categoria(1,conexion)
-    cuenta = obtener_cuenta(1,conexion)
-    
-    operacion_actualizada = Operacion(
-        fecha = "30/8/2026",
-        tipo = TipoOperacion.GASTO,
-        categoria = categoria,
-        descripcion = "Pollo con papas",
-        monto = 12000,
-        cuenta_origen = cuenta,
-        cuenta_destino = None
-    )
-    
-    resultado = actualizar_operacion(4,operacion_actualizada,conexion)
-    
-    operaciones = obtener_operaciones(conexion)
-    
-    print(f"Cantidad de operaciones: {len(operaciones)}")
+    operaciones = obtener_operaciones_por_cuenta(1,conexion)
     
     for operacion in operaciones:
-        print("--------------------")
-        print("ID:", operacion.id)
-        print("Fecha:", operacion.fecha)
-        print("Tipo:", operacion.tipo.value)
-        print("Descripcion:", operacion.descripcion)
-        print("Monto:", operacion.monto)
-        
-        if operacion.categoria is not None:
-            print("Categoria:", operacion.categoria.nombre)
-        
-        if operacion.cuenta_origen is not None:
-            print("Cuenta origen:", operacion.cuenta_origen.nombre)
-        
-        if operacion.cuenta_destino is not None:
-            print("Cuenta destino:", operacion.cuenta_destino.nombre)
-        
+        print(operacion.id,operacion.fecha,operacion.tipo,operacion.descripcion,operacion.monto)
+    
     conexion.close()
 
 if __name__ == "__main__":

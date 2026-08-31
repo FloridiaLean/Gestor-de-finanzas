@@ -4,6 +4,7 @@ from database.cuentas import obtener_cuenta
 from models.operacion import Operacion
 from models.tipo_operacion import TipoOperacion
 from models.tipo_conversion import TipoConversion
+from utils.validaciones import validar_fecha
 
 def guardar_operacion(operacion,conexion=None):
     
@@ -179,3 +180,132 @@ def actualizar_operacion(id_operacion,operacion,conexion=None):
         conexion.close()
     
     return actualizado
+
+def obtener_operaciones_por_periodo(fecha_desde,fecha_hasta,conexion=None):
+    
+    conexion_propia = False
+    
+    if conexion is None:
+        conexion = obtener_conexion()
+        conexion_propia = True
+    
+    if not validar_fecha(fecha_desde):
+        if conexion_propia:
+            conexion.close()
+        return []
+    
+    if not validar_fecha(fecha_hasta):
+        if conexion_propia:
+            conexion.close()
+        return []
+    
+    if fecha_desde > fecha_hasta:
+        if conexion_propia:
+            conexion.close()
+        return []
+    
+    resultados = conexion.execute("""
+        SELECT id
+        FROM operaciones
+        WHERE fecha >= ?
+        AND fecha <= ?
+        ORDER BY fecha
+    """, (fecha_desde,fecha_hasta)).fetchall()
+    
+    operaciones = []
+    
+    for resultado in resultados:
+        operacion = obtener_operacion(resultado[0],conexion)
+        
+        if operacion is not None:
+            operaciones.append(operacion)
+    
+    if conexion_propia:
+        conexion.close()
+    
+    return operaciones
+
+def obtener_operaciones_por_categoria(categoria_id,conexion=None):
+    
+    conexion_propia = False
+    
+    if conexion is None:
+        conexion = obtener_conexion()
+        conexion_propia = True
+    
+    resultados = conexion.execute("""
+        SELECT id
+        FROM operaciones
+        WHERE categoria_id = ?
+        ORDER BY fecha
+    """, (categoria_id,)).fetchall()
+    
+    operaciones = []
+    
+    for resultado in resultados:
+        operacion = obtener_operacion(resultado[0],conexion)
+    
+        if operacion is not None:
+            operaciones.append(operacion)
+    
+    if conexion_propia:
+        conexion.close()
+    
+    return operaciones
+
+def obtener_operaciones_por_tipo(tipo,conexion=None):
+    
+    conexion_propia = False
+    
+    if conexion is None:
+        conexion = obtener_conexion()
+        conexion_propia = True
+    
+    resultados = conexion.execute("""
+        SELECT id
+        FROM operaciones
+        WHERE tipo = ?
+        ORDER BY fecha
+    """, (tipo.value,)).fetchall()
+    
+    operaciones = []
+    
+    for resultado in resultados:
+        operacion = obtener_operacion(resultado[0],conexion)
+        
+        if operacion is not None:
+            operaciones.append(operacion)
+    
+    if conexion_propia:
+        conexion.close()
+    
+    return operaciones
+
+def obtener_operaciones_por_cuenta(cuenta_id,conexion=None):
+    
+    conexion_propia = False
+    
+    if conexion is None:
+        conexion = obtener_conexion()
+        conexion_propia = True
+    
+    resultados = conexion.execute("""
+        SELECT id
+        FROM operaciones
+        WHERE cuenta_origen_id = ?
+        OR cuenta_destino_id = ?
+        ORDER BY fecha
+    """, (cuenta_id, cuenta_id)).fetchall()
+    
+    operaciones = []
+    
+    for resultado in resultados:
+        operacion = obtener_operacion(resultado[0],conexion)
+        
+        if operacion is not None:
+            operaciones.append(operacion)
+    
+    if conexion_propia:
+        conexion.close()
+    
+    return operaciones
