@@ -84,11 +84,10 @@ def actualizar_cuenta(id_cuenta,cuenta,conexion=None):
         id_cuenta
     ))
     
-    conexion.commit()
-    
     actualizada = resultado.rowcount > 0
     
     if conexion_propia:
+        conexion.commit()
         conexion.close()
     
     return actualizada

@@ -178,11 +178,11 @@ El proyecto se divide en fases incrementales para asegurar un desarrollo ordenad
 - ✅ Asociar categorías a operaciones.
 
 ### 🔹 Sprint 4 — Historial y consultas
-- [ ] Visualizar operaciones.
-- [ ] Filtrar por período.
-- [ ] Filtrar por categoría.
-- [ ] Filtrar por tipo.
-- [ ] Consultar saldos.
+- ✅ Visualizar operaciones.
+- ✅ Filtrar por período.
+- ✅ Filtrar por categoría.
+- ✅ Filtrar por tipo.
+- ✅ Consultar saldos.
 
 ### 🔹 Sprint 5 — Aplicación web
 - [ ] Incorporar Flask.
@@ -238,6 +238,8 @@ Se han implementado:
 - Operaciones de gasto.
 - Transferencias entre cuentas.
 - Compra y venta de dólares.
+- Registro de ajustes manuales de saldo.
+- Historial de modificaciones de saldo.
 - Validaciones asociadas a conversiones.
 - Persistencia de cuentas.
 - Persistencia de categorías.

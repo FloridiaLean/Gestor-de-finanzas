@@ -75,3 +75,28 @@ def crear_tabla_operaciones(conexion=None):
     
     if conexion_propia:
         conexion.close()
+
+def crear_tabla_ajustes_saldo(conexion=None):
+    
+    conexion_propia = False
+    
+    if conexion is None:
+        conexion = obtener_conexion()
+        conexion_propia = True
+            
+    conexion.execute("""
+        CREATE TABLE IF NOT EXISTS ajustes_saldo (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            cuenta_id INTEGER NOT NULL,
+            fecha TEXT NOT NULL,
+            saldo_anterior REAL NOT NULL,
+            saldo_nuevo REAL NOT NULL,
+            motivo TEXT,
+            FOREIGN KEY (cuenta_id) REFERENCES cuentas(id)
+        )
+    """)
+    
+    conexion.commit()
+    
+    if conexion_propia:
+            conexion.close()

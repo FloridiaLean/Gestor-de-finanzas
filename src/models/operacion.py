@@ -7,6 +7,7 @@ from models.proposito_cuenta import PropositoCuenta
 class Operacion:
     
     def __init__(self,fecha,tipo,categoria,descripcion,monto,cuenta_origen,cuenta_destino,precio_conversion=None,subtipo_conversion=None,id=None):
+        
         self.fecha = fecha
         self.tipo = tipo
         self.categoria = categoria
