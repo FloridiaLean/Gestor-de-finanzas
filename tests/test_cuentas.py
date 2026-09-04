@@ -2,7 +2,8 @@ from database.database import obtener_conexion
 from database.cuentas import (
     guardar_cuenta,
     obtener_cuenta,
-    actualizar_cuenta
+    actualizar_cuenta,
+    obtener_cuentas
 )
 from database.schema import crear_tabla_cuentas
 from models.cuenta import Cuenta
@@ -77,6 +78,45 @@ def test_obtener_cuenta_inexistente():
     cuenta_obtenida = obtener_cuenta(999,conexion)
     
     assert cuenta_obtenida is None
+    
+    conexion.close()
+
+def test_obtener_cuentas():
+    
+    conexion = obtener_conexion(":memory:")
+    
+    crear_tabla_cuentas(conexion)
+    
+    cuenta_1 = Cuenta(
+        nombre="Mercado Pago",
+        moneda=Moneda.ARS,
+        proposito=PropositoCuenta.DISPONIBLE,
+        saldo=180000
+    )
+    
+    cuenta_2 = Cuenta(
+        nombre="Efectivo",
+        moneda=Moneda.ARS,
+        proposito=PropositoCuenta.DISPONIBLE,
+        saldo=50000
+    )
+    
+    guardar_cuenta(cuenta_1,conexion)
+    guardar_cuenta(cuenta_2,conexion)
+    
+    cuentas = obtener_cuentas(conexion)
+    
+    assert len(cuentas) == 2
+    assert isinstance(cuentas[0], Cuenta)
+    assert cuentas[0].nombre == "Mercado Pago"
+    assert cuentas[0].moneda == Moneda.ARS
+    assert cuentas[0].proposito == PropositoCuenta.DISPONIBLE
+    assert cuentas[0].saldo == 180000
+    assert isinstance(cuentas[1], Cuenta)
+    assert cuentas[1].nombre == "Efectivo"
+    assert cuentas[1].moneda == Moneda.ARS
+    assert cuentas[1].proposito == PropositoCuenta.DISPONIBLE
+    assert cuentas[1].saldo == 50000
     
     conexion.close()
 

@@ -61,6 +61,37 @@ def obtener_cuenta(id_cuenta,conexion=None):
         saldo=resultado[4]
     )
 
+def obtener_cuentas(conexion=None):
+    
+    conexion_propia = False
+    
+    if conexion is None:
+        conexion = obtener_conexion()
+        conexion_propia = True
+    
+    resultados = conexion.execute("""
+        SELECT id,nombre,moneda,proposito,saldo
+        FROM cuentas
+    """).fetchall()
+    
+    if conexion_propia:
+        conexion.close()
+    
+    cuentas = []
+    
+    for resultado in resultados:
+        cuenta = Cuenta(
+            id=resultado[0],
+            nombre=resultado[1],
+            moneda=Moneda(resultado[2]),
+            proposito=PropositoCuenta(resultado[3]),
+            saldo=resultado[4]
+        )
+        
+        cuentas.append(cuenta)
+    
+    return cuentas
+
 def actualizar_cuenta(id_cuenta,cuenta,conexion=None):
     
     conexion_propia = False
