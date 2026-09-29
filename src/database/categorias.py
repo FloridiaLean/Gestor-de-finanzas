@@ -83,3 +83,34 @@ def actualizar_categoria(id_categoria,categoria,conexion=None):
         conexion.close()
     
     return actualizada
+
+def obtener_categorias(conexion=None):
+    
+    conexion_propia = False
+    
+    if conexion is None:
+        conexion = obtener_conexion()
+        conexion_propia = True
+    
+    resultados = conexion.execute("""
+        SELECT id,nombre,activa
+        FROM categorias
+        ORDER BY nombre
+    """).fetchall()
+    
+    if conexion_propia:
+        conexion.close()
+    
+    categorias = []
+    
+    for resultado in resultados:
+        categoria = Categoria(
+            id=resultado[0],
+            nombre=resultado[1]
+        )
+        
+        categoria.activa = bool(resultado[2])
+        
+        categorias.append(categoria)
+        
+    return categorias

@@ -1,16 +1,13 @@
-from database.cuentas import obtener_cuentas
+from consultas.resumen import obtener_resumen_anual
 
 def main():
     
-    cuentas = obtener_cuentas()
+    resumen = obtener_resumen_anual(2026)
     
-    for cuenta in cuentas:
-        print(
-            cuenta.nombre,
-            cuenta.moneda.value,
-            cuenta.proposito.value,
-            cuenta.saldo
-)
-
+    print("Año:", resumen["año"])
+    
+    for mes in resumen["meses"]:
+        print(mes)
+    
 if __name__ == "__main__":
     main()

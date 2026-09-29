@@ -46,7 +46,7 @@ def test_guardar_operacion():
     guardar_categoria(categoria,conexion)
     
     operacion = Operacion(
-        fecha="2026/08/28",
+        fecha="2026-08-28",
         tipo=TipoOperacion.GASTO,
         categoria=categoria,
         descripcion="Hamburguesa",
@@ -77,7 +77,7 @@ def test_guardar_operacion():
     assert isinstance(operacion.id,int)
     assert resultado is not None
     assert resultado[0] == operacion.id
-    assert resultado[1] == "2026/08/28"
+    assert resultado[1] == "2026-08-28"
     assert resultado[2] == "Gasto"
     assert resultado[3] == categoria.id
     assert resultado[4] == "Hamburguesa"
@@ -112,7 +112,7 @@ def test_obtener_operacion_existente():
     guardar_categoria(categoria,conexion)
     
     operacion = Operacion(
-        fecha="2026/08/28",
+        fecha="2026-08-28",
         tipo=TipoOperacion.GASTO,
         categoria=categoria,
         descripcion="Hamburguesa",
@@ -127,7 +127,7 @@ def test_obtener_operacion_existente():
     
     assert operacion_obtenida is not None
     assert operacion_obtenida.id == operacion.id
-    assert operacion_obtenida.fecha == "2026/08/28"
+    assert operacion_obtenida.fecha == "2026-08-28"
     assert operacion_obtenida.tipo == TipoOperacion.GASTO
     assert operacion_obtenida.categoria is not None
     assert operacion_obtenida.categoria.id == categoria.id
@@ -181,7 +181,7 @@ def test_obtener_operaciones():
     guardar_cuenta(cuenta,conexion)
     
     operacion_1 = Operacion(
-        fecha="2026/08/30",
+        fecha="2026-08-30",
         tipo=TipoOperacion.GASTO,
         categoria=categoria,
         descripcion="Hamburguesa con los chicos",
@@ -190,7 +190,7 @@ def test_obtener_operaciones():
         cuenta_destino=None
     )
     operacion_2 = Operacion(
-        fecha="2026/08/30",
+        fecha="2026-08-30",
         tipo=TipoOperacion.GASTO,
         categoria=categoria,
         descripcion="Supermercado",
@@ -240,7 +240,7 @@ def test_actualizar_operacion():
     guardar_categoria(categoria,conexion)
     
     operacion = Operacion(
-        fecha="2026/08/28",
+        fecha="2026-08-28",
         tipo=TipoOperacion.GASTO,
         categoria=categoria,
         descripcion="Hamburguesa",
@@ -252,7 +252,7 @@ def test_actualizar_operacion():
     guardar_operacion(operacion,conexion)
     
     operacion_actualizada = Operacion(
-        fecha="2026/08/28",
+        fecha="2026-08-28",
         tipo=TipoOperacion.GASTO,
         categoria=categoria,
         descripcion="Cena",
@@ -297,7 +297,7 @@ def test_actualizar_operacion_inexistente():
     )
     
     operacion = Operacion(
-        fecha="2026/08/28",
+        fecha="2026-08-28",
         tipo=TipoOperacion.GASTO,
         categoria=categoria,
         descripcion="Hamburguesa",
