@@ -17,6 +17,7 @@ from models.moneda import Moneda
 from models.proposito_cuenta import PropositoCuenta
 from models.operacion import Operacion
 from models.tipo_operacion import TipoOperacion
+from models.tipo_conversion import TipoConversion
 
 
 def test_resumen_anual_contiene_doce_meses():
@@ -223,4 +224,64 @@ def test_resumen_categorias_desactivadas():
         assert mes["gastos_por_categoria"]["Comida"] == 0
         assert mes["gastos_por_categoria"]["Transporte"] == 0
         
+    conexion.close()
+
+def test_resumen_conversiones():
+    conexion = obtener_conexion(":memory:")
+    crear_tabla_cuentas(conexion)
+    crear_tabla_categorias(conexion)
+    crear_tabla_operaciones(conexion)
+    
+    cuenta_ars = Cuenta(
+        nombre="Mercado Pago",
+        moneda=Moneda.ARS,
+        proposito=PropositoCuenta.DISPONIBLE,
+        saldo=500000
+    )
+    
+    cuenta_usd = Cuenta(
+        nombre="Dólares",
+        moneda=Moneda.USD,
+        proposito=PropositoCuenta.AHORRO,
+        saldo=1000
+    )
+    
+    guardar_cuenta(cuenta_ars,conexion)
+    guardar_cuenta(cuenta_usd,conexion)
+    
+    compra = Operacion(
+        fecha="2026-08-10",
+        tipo=TipoOperacion.CONVERSION,
+        categoria=None,
+        descripcion="Compra de dólares",
+        monto=200,
+        cuenta_origen=cuenta_ars,
+        cuenta_destino=cuenta_usd,
+        precio_conversion=1500,
+        subtipo_conversion=TipoConversion.COMPRA
+    )
+    
+    venta = Operacion(
+        fecha="2026-08-20",
+        tipo=TipoOperacion.CONVERSION,
+        categoria=None,
+        descripcion="Venta de dólares",
+        monto=50,
+        cuenta_origen=cuenta_usd,
+        cuenta_destino=cuenta_ars,
+        precio_conversion=1500,
+        subtipo_conversion=TipoConversion.VENTA
+    )
+    
+    guardar_operacion(compra,conexion)
+    guardar_operacion(venta,conexion)
+    
+    resumen = obtener_resumen_anual(2026,conexion)
+    agosto = resumen["meses"][7]
+    
+    assert agosto["dolares_comprados"] == 200
+    assert agosto["dolares_vendidos"] == 50
+    assert agosto["ingresos"] == 0
+    assert agosto["gastos"] == 0
+    
     conexion.close()

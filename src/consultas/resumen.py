@@ -1,4 +1,5 @@
 from models.tipo_operacion import TipoOperacion
+from models.tipo_conversion import TipoConversion
 from database.operaciones import obtener_operaciones_por_periodo
 from database.categorias import obtener_categorias
 
@@ -50,7 +51,14 @@ def obtener_resumen_anual(año,conexion=None):
                 mes_resumen["gastos_por_categoria"][nombre_categoria] = 0
                 
             mes_resumen["gastos_por_categoria"][nombre_categoria] += operacion.monto
+        
+        elif operacion.tipo == TipoOperacion.CONVERSION:
+            if operacion.subtipo_conversion == TipoConversion.COMPRA:
+                mes_resumen["dolares_comprados"] += operacion.monto
             
+            elif operacion.subtipo_conversion == TipoConversion.VENTA:
+                mes_resumen["dolares_vendidos"] += operacion.monto
+                
     return {
         "año": año,
         "meses": meses
